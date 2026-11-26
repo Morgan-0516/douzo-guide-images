@@ -47,6 +47,12 @@ def seg(m):
 
 
 out = re.sub(r"(<[^>]*>)([^<]*)", seg, src)
+# 跨標籤：「到<a>Douzo」「Douzo</a>是」這種中文和英數被標籤隔開的情況
+for rx, rep in [(re.compile(f"({CJK})((?:<(?:a|strong|em)\\b[^>]*>)+)(?={AN})"), r"\1 \2"),
+                (re.compile(f"(?<={AN})((?:</(?:a|strong|em)>)+)({CJK})"), r"\1 \2")]:
+    for m in rx.finditer(out):
+        hits.append(("標籤兩側中英沒空格", re.sub(r"<[^>]+>", "", out[max(0, m.start() - 20):m.end() + 12])))
+    out = rx.sub(rep, out)
 print(f"{d.name}: 要改 {len(hits)} 處，要人看 {len(flags)} 處")
 for why, ctx in hits[:int(sys.argv[3]) if len(sys.argv) > 3 else 8]:
     print("  改", why, "｜", ctx.replace("\n", " "))
