@@ -9,8 +9,8 @@
 
 - 全大寫 DOUZO 改 Douzo；邀請碼 DOUZOGB 這種連在一起的代碼不動。
 
-只列出、不自動改：「...」（應為「……」）、「！！」、emoji、五位數以上沒千分位、小寫 douzo、Doya 寫法。
-只查格式（Douzo 品牌規範 spec.md 第六、七節），不查法規用詞和語氣。
+只列出、不自動改：「...」（應為「……」）、「！！」、五位數以上沒千分位、小寫 douzo、Doya 寫法。
+只查格式（Douzo 品牌規範 spec.md 第六、七節），不查 emoji、法規用詞和語氣。
 
 寫回前的保護：用另一套解析器（html.parser）比對修前修後，標籤順序、alt 以外的屬性、
 pre／code／script／style 裡的文字只要有一點不同，就不寫並結束碼 1。
@@ -30,7 +30,6 @@ RULES = [
 FLAGS = [
     (re.compile(r"\.{3,}"), "「...」應為「……」"),
     (re.compile(r"！！"), "連續驚嘆號"),
-    (re.compile("[\U0001F300-\U0001FAFF☀-➿]"), "官網不用 emoji"),
     (re.compile(r"(?<![\d,.])\d{5,}(?![\d,.])"), "五位數以上沒千分位（編號、年份不用加）"),
     (re.compile(r"\bdouzo\b(?![./@])"), "品牌寫法應為 Douzo"),
     (re.compile(r"\bDOYA\b|\bdoya\b(?![./-])"), "品牌寫法應為 Doya"),
