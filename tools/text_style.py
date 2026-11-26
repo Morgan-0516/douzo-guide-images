@@ -7,7 +7,9 @@
 - 全形英數和 ％ 改半形。
 - 範圍：標籤之間的文字和 alt 屬性。pre、code、script、style 裡面不動。
 
-只列出、不自動改：「...」（應為「……」）、「！！」、品牌寫法（Douzo、Doya）。
+- 全大寫 DOUZO 改 Douzo；邀請碼 DOUZOGB 這種連在一起的代碼不動。
+
+只列出、不自動改：「...」（應為「……」）、「！！」、小寫 douzo、Doya 寫法。
 
 寫回前的保護：用另一套解析器（html.parser）比對修前修後，標籤順序、alt 以外的屬性、
 pre／code／script／style 裡的文字只要有一點不同，就不寫並結束碼 1。
@@ -22,11 +24,12 @@ AN = "[A-Za-z0-9]"
 RULES = [
     (re.compile(f"({CJK})({AN})"), r"\1 \2", "中文接英數沒空格"),
     (re.compile(f"({AN}|%)({CJK})"), r"\1 \2", "英數或 % 接中文沒空格"),
+    (re.compile(r"\bDOUZO\b"), "Douzo", "品牌寫法統一 Douzo（2026-11-26 使用者定）"),
 ]
 FLAGS = [
     (re.compile(r"\.{3,}"), "「...」應為「……」"),
     (re.compile(r"！！"), "連續驚嘆號"),
-    (re.compile(r"\bDOUZO\b|\bdouzo\b(?![./@])"), "品牌寫法應為 Douzo"),
+    (re.compile(r"\bdouzo\b(?![./@])"), "品牌寫法應為 Douzo"),
     (re.compile(r"\bDOYA\b|\bdoya\b(?![./-])"), "品牌寫法應為 Doya"),
 ]
 FW = str.maketrans({chr(c): chr(c - 0xFEE0) for c in [0xFF05] + list(range(0xFF10, 0xFF1A)) + list(range(0xFF21, 0xFF3B)) + list(range(0xFF41, 0xFF5B))})
