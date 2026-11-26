@@ -34,8 +34,8 @@ for f in sorted((d / "images").glob("*.webp")):
     shutil.copy2(f, dest / f"img{f.stem}.webp")
 for f in sorted((d / "table_images").glob("table*.webp")):
     shutil.copy2(f, dest / f.name)
-git("add", "-A")
-if git("status", "--porcelain"):
+git("add", "--", f"{cat}/{slug}")  # 只收這篇的圖，工具程式另外 commit
+if git("diff", "--cached", "--name-only"):
     git("commit", "-q", "-m", f"Images for {cat}/{slug}" + TRAILER)
     git("push", "-q")
 ver = git("rev-parse", "--short", "HEAD")
@@ -76,8 +76,8 @@ with open(MAP, "w", encoding="utf-8-sig", newline="") as f:
     w = csv.DictWriter(f, COLS)
     w.writeheader()
     w.writerows(sorted(keep + entries, key=lambda r: (r["分類"], r["文章"], r["檔名"])))
-git("add", "-A")
-if git("status", "--porcelain"):
+git("add", "--", MAP.name)
+if git("diff", "--cached", "--name-only"):
     git("commit", "-q", "-m", f"Update 圖片對照表 for {cat}/{slug}" + TRAILER)
     git("push", "-q")
 
