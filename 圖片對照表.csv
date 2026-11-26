@@ -79,6 +79,13 @@ futures-data,open-interest,img02.webp,內文圖,有效的上漲突破,,https://c
 futures-data,open-interest,img03.webp,內文圖,風險高的上漲,,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@d152c54/futures-data/open-interest/img03.webp
 futures-data,open-interest,img04.webp,內文圖,有效的下跌突破,,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@d152c54/futures-data/open-interest/img04.webp
 futures-data,open-interest,img05.webp,內文圖,用持倉變化找強勢幣,,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@d152c54/futures-data/open-interest/img05.webp
+futures-data,sentiment-lens-walkthrough,img01.webp,內文圖,開單前的三個問題,觀察清單每檔幣一張卡片，三個問題都從卡片上那一行摘要找答案,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@37f09b3/futures-data/sentiment-lens-walkthrough/img01.webp
+futures-data,sentiment-lens-walkthrough,img02.webp,內文圖,問題三：多空太擁擠了嗎？看散戶與大戶偏向,Sentiment Lens 儀表板單一卡片,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@37f09b3/futures-data/sentiment-lens-walkthrough/img02.webp
+futures-data,sentiment-lens-walkthrough,img03.webp,內文圖,再確認一次：聰明錢雷達、資金費率、爆倉,聰明錢雷達只追蹤 HyperLiquid 地址，和卡片的大戶偏向同方向才算確認,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@37f09b3/futures-data/sentiment-lens-walkthrough/img03.webp
+futures-data,sentiment-lens-walkthrough,table1.webp,表格圖,開單前的三個問題,開單前的三個問題,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@37f09b3/futures-data/sentiment-lens-walkthrough/table1.webp
+futures-data,sentiment-lens-walkthrough,table2.webp,表格圖,問題一：新資金進場，還是舊倉位在平？看持倉量,問題一：新資金進場，還是舊倉位在平？看持倉量,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@37f09b3/futures-data/sentiment-lens-walkthrough/table2.webp
+futures-data,sentiment-lens-walkthrough,table3.webp,表格圖,問題三：多空太擁擠了嗎？看散戶與大戶偏向,問題三：多空太擁擠了嗎？看散戶與大戶偏向,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@37f09b3/futures-data/sentiment-lens-walkthrough/table3.webp
+futures-data,sentiment-lens-walkthrough,table4.webp,表格圖,再確認一次：聰明錢雷達、資金費率、爆倉,再確認一次：聰明錢雷達、資金費率、爆倉,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@37f09b3/futures-data/sentiment-lens-walkthrough/table4.webp
 futures-data,spot-vs-futures-cvd,img01.webp,內文圖,,,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@cf6ed91/futures-data/spot-vs-futures-cvd/img01.webp
 futures-data,spot-vs-futures-cvd,img02.webp,內文圖,,,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@cf6ed91/futures-data/spot-vs-futures-cvd/img02.webp
 futures-data,spot-vs-futures-cvd,img03.webp,內文圖,,,https://cdn.jsdelivr.net/gh/Morgan-0516/douzo-guide-images@cf6ed91/futures-data/spot-vs-futures-cvd/img03.webp
