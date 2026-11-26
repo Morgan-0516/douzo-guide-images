@@ -22,8 +22,8 @@ DOUZO 官網指南文章（douzo01.com/guide）的內文圖片和表格圖。官
 在這個 repo 的根目錄執行（`<專案>` 是搬運專案資料夾的路徑）：
 0. 先修文字格式，表格圖會吃到改好的字：
    `python -I -X utf8 tools/text_style.py <專案>/articles/<文章slug> --fix`
-   自動修：中英數空格、全形英數和 ％ 改半形、DOUZO 改 Douzo。只列出：「...」、「！！」、五位數以上沒千分位、小寫 douzo。
-   再跑一次不加 `--fix`，要印「要改 0 處」。遇到不支援的 HTML 會停下來（結束碼 1），那篇改人工看。
+   自動修：中英數空格、全形英數和 ％ 改半形、DOUZO 改 Douzo。只列出：「...」、「！！」、四位數以上沒千分位（年份、編號不用加）、小寫 douzo、Doya 寫法。
+   再跑一次不加 `--fix`，要印「要改 0 處」、結束碼 0（還有要改的會回 3）。遇到不支援的 HTML 會停下來（結束碼 1），那篇改人工看。
 1. 有表格的文章先把表格做成圖：
    `python -I -X utf8 tools/table_img.py <專案>/articles/<文章slug>`
    會在 `table_images\` 產生 `table1.webp`…，每張壓到 150KB 以下。跑完打開看一遍有沒有跑版。
