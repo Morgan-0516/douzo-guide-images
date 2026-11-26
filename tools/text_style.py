@@ -12,7 +12,8 @@
 寫回前的保護：用另一套解析器（html.parser）比對修前修後，標籤順序、alt 以外的屬性、
 pre／code／script／style 裡的文字只要有一點不同，就不寫並結束碼 1。
 
-不支援、遇到會停下來（結束碼 1）的寫法：屬性值裡有「>」、HTML 註解、pre／code／script／style 沒關。"""
+不支援、遇到會停下來（結束碼 1）的寫法：屬性值裡有「>」、HTML 註解／DOCTYPE／CDATA／處理指令、單獨的「<」或沒關的標籤、pre／code／script／style 等沒關。
+pre、code 之外，textarea、kbd、samp、var、tt 裡面也不動。"""
 import sys, re, pathlib
 from html.parser import HTMLParser
 
@@ -29,7 +30,7 @@ FLAGS = [
     (re.compile(r"\bDOYA\b|\bdoya\b(?![./-])"), "品牌寫法應為 Doya"),
 ]
 FW = str.maketrans({chr(c): chr(c - 0xFEE0) for c in [0xFF05] + list(range(0xFF10, 0xFF1A)) + list(range(0xFF21, 0xFF3B)) + list(range(0xFF41, 0xFF5B))})
-SKIP = {"pre", "code", "script", "style"}
+SKIP = {"pre", "code", "script", "style", "textarea", "kbd", "samp", "var", "tt"}
 INLINE = {"a", "strong", "b", "em", "i", "u", "span"}
 TAGNAME = re.compile(r"<(/?)([A-Za-z][A-Za-z0-9]*)")
 ALT = re.compile(r"""((?<![\w-])alt\s*=\s*)("[^"]*"|'[^']*')""", re.I)
@@ -57,9 +58,11 @@ if not (d / "body.html").is_file():
 src = (d / "body.html").read_text(encoding="utf-8")
 
 # ---- 不支援的寫法：停下來，不猜 ----
-if "<!--" in src:
-    stop(f"{d.name}: 有 HTML 註解，這支不處理，請手動看")
+if "<!" in src or "<?" in src:
+    stop(f"{d.name}: 有 HTML 註解、DOCTYPE、CDATA 或處理指令，這支不處理，請手動看")
 QTAG = re.compile(r"""</?[A-Za-z][^<>"']*(?:(?:"[^"]*"|'[^']*')[^<>"']*)*>""")
+if any(not QTAG.match(src, k) for k in range(len(src)) if src[k] == "<"):
+    stop(f"{d.name}: 有單獨的「<」或沒關的標籤，這支不處理，請手動看")
 if any(">" in m.group(0)[:-1] for m in QTAG.finditer(src)):
     stop(f"{d.name}: 有屬性值含「>」，這支不處理，請手動看")
 

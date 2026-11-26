@@ -35,8 +35,8 @@ for f in sorted((d / "images").glob("*.webp")):
 for f in sorted((d / "table_images").glob("table*.webp")):
     shutil.copy2(f, dest / f.name)
 git("add", "--", f"{cat}/{slug}")  # 只收這篇的圖，工具程式另外 commit
-if git("diff", "--cached", "--name-only"):
-    git("commit", "-q", "-m", f"Images for {cat}/{slug}" + TRAILER)
+if git("diff", "--cached", "--name-only", "--", f"{cat}/{slug}"):
+    git("commit", "-q", "-m", f"Images for {cat}/{slug}" + TRAILER, "--", f"{cat}/{slug}")
     git("push", "-q")
 ver = git("rev-parse", "--short", "HEAD")
 base = f"https://cdn.jsdelivr.net/gh/{GH}@{ver}/{cat}/{slug}/"
@@ -77,8 +77,8 @@ with open(MAP, "w", encoding="utf-8-sig", newline="") as f:
     w.writeheader()
     w.writerows(sorted(keep + entries, key=lambda r: (r["分類"], r["文章"], r["檔名"])))
 git("add", "--", MAP.name)
-if git("diff", "--cached", "--name-only"):
-    git("commit", "-q", "-m", f"Update 圖片對照表 for {cat}/{slug}" + TRAILER)
+if git("diff", "--cached", "--name-only", "--", MAP.name):
+    git("commit", "-q", "-m", f"Update 圖片對照表 for {cat}/{slug}" + TRAILER, "--", MAP.name)
     git("push", "-q")
 
 # 4. 確認沒登入也抓得到
