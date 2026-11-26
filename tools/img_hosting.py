@@ -64,7 +64,10 @@ def sub(m):
 
 
 out = re.sub(r"<h[23]>.*?</h[23]>|<img [^>]*>|<table[^>]*>.*?</table>", sub, src, flags=re.S)
-(d / "body_final.html").write_text(out.replace("\n", ""), encoding="utf-8")
+# 刪掉標籤之間的換行，<pre> 裡的換行要留著（流程圖、對齊排版）
+out = "".join(p if p.lower().startswith("<pre") else p.replace("\n", "")
+              for p in re.split(r"(<pre\b.*?</pre>)", out, flags=re.S | re.I))
+(d / "body_final.html").write_text(out, encoding="utf-8")
 
 # 3. 對照表：換掉這篇的列
 old = list(csv.DictReader(open(MAP, encoding="utf-8-sig"))) if MAP.exists() else []
